@@ -103,6 +103,10 @@ const checagem = await db.get(`SELECT COUNT(*) AS total FROM incidentes`)
             console.log('------RELATÓRIO FINAL------')
             const resultadoFinal = await db.all(`SELECT * FROM incidentes`)
             console.log(resultadoFinal)
+
+            return db; // A função 'criarBanco' agora entrega a "chave" do banco
  
 }
-criarBanco()
+// o module.exports cria uma 'ponte' que permite compartilhar função entre arquivos
+//Neste caso ele exporta a função 'criarBanco'
+module.exports = {criarBanco}
