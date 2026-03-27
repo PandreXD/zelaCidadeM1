@@ -57,7 +57,7 @@ const checagem = await db.get(`SELECT COUNT(*) AS total FROM incidentes`)
             ('Alagamento', 'Rua gifone, 325', 'Rua Alagada', 'Média', 'Carlos','71981315645','16-03-2026', '10:00', 'https://www.otempo.com.br/adobe/dynamicmedia/deliver/dm-aid--51c801d9-3137-49c9-9720-83fcc583e837/cidades-franco-1709440294.jpg?quality=90&preferwebp=true&width=1200')
             `)
 
-            console.log('Dados inseridos dentri da tabela incidentes')
+            console.log('Dados inseridos dentro da tabela incidentes')
 
        }else{
         console.log(`Banco pronto com ${checagem.total}`)
