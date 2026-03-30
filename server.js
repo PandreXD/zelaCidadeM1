@@ -1,9 +1,12 @@
 const express = require('express')
 const {criarBanco} = require('./database')
+const cors = require('cors') // Importando o pacote que gerencia as permições de acesso
 
 const app = express()
 
 app.use(express.json())
+
+app.use(cors()) // ativando o cors no nosso servidor, o comando app.use(cors()) avisa o navegador: "Pode liberar o acesso para qualquer site que queira consultar meus dados!"
 
 app.get('/',(req,res)=>{
     res.send(`
@@ -15,11 +18,7 @@ app.get('/',(req,res)=>{
         </body>
         `)
 })
-const PORT = 3000
 
-app.listen(    PORT, ()=>{
-    console.log(`Servidor rodando na porta http://localhost:${PORT}`)
-})
 
 app.get('/incidentes', async (req,res)=>{
     const db = await criarBanco()
@@ -75,4 +74,10 @@ app.delete('/incidentes/:id',async (req,res)=>{
     await db.run(`DELETE FROM incidentes WHERE id = ?`,[id])
 
     res.send(`O incidente de id ${id} foi removido com sucesso`)
+})
+
+const PORT = process.env.PORT || 3000
+
+app.listen(    PORT, ()=>{
+    console.log(`Servidor rodando na porta http://localhost:${PORT}`)
 })
